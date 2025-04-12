@@ -36,7 +36,7 @@ h1 {
   border: 1px solid #ddd;
   border-radius: 4px;
   flex-grow: 1;
-  min-width: 200px;
+  min-width: 400px;
 }
 
 #category-filter {

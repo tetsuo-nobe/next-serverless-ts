@@ -4,7 +4,7 @@ import { Item } from "@/utils/types";
 const items: Item[] = [
     {
         id: '1',
-        name: '4Kテレビ 55インチ',
+        itemName: '4Kテレビ 55インチ',
         category: 'electronics',
         categoryName: '電化製品',
         price: 89800,
@@ -13,7 +13,7 @@ const items: Item[] = [
     },
     {
         id: '2',
-        name: 'ノートパソコン',
+        itemName: 'ノートパソコン',
         category: 'electronics',
         categoryName: '電化製品',
         price: 128000,
@@ -22,7 +22,7 @@ const items: Item[] = [
     },
     {
         id: '3',
-        name: 'コットンTシャツ',
+        itemName: 'コットンTシャツ',
         category: 'clothing',
         categoryName: '衣類',
         price: 2980,
@@ -31,7 +31,7 @@ const items: Item[] = [
     },
     {
         id: '4',
-        name: 'デニムジーンズ',
+        itemName: 'デニムジーンズ',
         category: 'clothing',
         categoryName: '衣類',
         price: 6980,
@@ -40,7 +40,7 @@ const items: Item[] = [
     },
     {
         id: '5',
-        name: '有機野菜セット',
+        itemName: '有機野菜セット',
         category: 'food',
         categoryName: '食品',
         price: 3200,
@@ -49,7 +49,7 @@ const items: Item[] = [
     },
     {
         id: '6',
-        name: 'プレミアムコーヒー豆',
+        itemName: 'プレミアムコーヒー豆',
         category: 'food',
         categoryName: '食品',
         price: 1800,
@@ -58,7 +58,7 @@ const items: Item[] = [
     },
     {
         id: '7',
-        name: 'ベストセラー小説',
+        itemName: 'ベストセラー小説',
         category: 'books',
         categoryName: '書籍',
         price: 1500,
@@ -67,7 +67,7 @@ const items: Item[] = [
     },
     {
         id: '8',
-        name: '料理レシピ本',
+        itemName: '料理レシピ本',
         category: 'books',
         categoryName: '書籍',
         price: 2400,
@@ -76,7 +76,7 @@ const items: Item[] = [
     },
     {
         id: '9',
-        name: 'ワイヤレスイヤホン',
+        itemName: 'ワイヤレスイヤホン',
         category: 'electronics',
         categoryName: '電化製品',
         price: 15800,
@@ -85,7 +85,7 @@ const items: Item[] = [
     },
     {
         id: '10',
-        name: 'スマートウォッチ',
+        itemName: 'スマートウォッチ',
         category: 'electronics',
         categoryName: '電化製品',
         price: 32000,
