@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
             {
-              hostname: "images.unsplash.com"
+              hostname: "https://tnobep-next-serverless.s3.ap-northeast-1.amazonaws.com"
             }
         ]
   }

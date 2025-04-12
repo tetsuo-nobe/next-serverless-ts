@@ -47,7 +47,7 @@ h1 {
   min-width: 150px;
 }
 
-#sort-price-btn {
+#search-btn {
   padding: 8px 16px;
   background-color: #3498db;
   color: white;
@@ -57,7 +57,7 @@ h1 {
   transition: background-color 0.3s;
 }
 
-#sort-price-btn:hover {
+#search-btn:hover {
   background-color: #2980b9;
 }
 
@@ -121,7 +121,7 @@ h1 {
       flex-direction: column;
   }
   
-  #search-input, #category-filter, #sort-price-btn {
+  #search-input, #category-filter, #search-btn {
       width: 100%;
       margin-bottom: 10px;
   }
