@@ -31,6 +31,7 @@ const Home =  () => {
              }).format(price)
     }
 
+    // 検索ボタン選択時の処理
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
@@ -46,7 +47,7 @@ const Home =  () => {
                 })
             })
             const jsonData = await response.json()
-            setItems(jsonData.items)
+            setItems(jsonData.Items)
 
             //
         }catch {
@@ -73,7 +74,7 @@ const Home =  () => {
                             <option value="food">食品</option>
                             <option value="books">書籍</option>
                         </select>
-                        <button id="search-btn">検索実行</button>
+                        <button id="search-btn">検索</button>
                     </form>
                 </div>
 
