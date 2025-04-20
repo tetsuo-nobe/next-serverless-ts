@@ -75,5 +75,7 @@ export const PT_BR = {
     'Password does not conform to policy: Password must have lowercase characters': 'パスワードには小文字を含めてください (8 文字以上の大文字小文字を含む英数字)',
     'Password does not conform to policy: Password must have numeric characters': 'パスワードには数字を含めてください (8 文字以上の大文字小文字を含む英数字)',
     "1 validation error detected: Value at 'password' failed to satisfy constraint: Member must have length greater than or equal to 6": 'パスワードは 8 文字以上、大文字小文字を含む英数字を指定してください',
+    'Your code is on the way. To log in, enter the code we emailed to': 'コードを送信しました。ログインするには、メールで送信したコードを入力してください。',
+    'It may take a minute to arrive.': '到着までに1分ほどかかる場合があります。'
   },
 };

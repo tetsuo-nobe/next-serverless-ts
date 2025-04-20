@@ -9,7 +9,7 @@ import '@aws-amplify/ui-react/styles.css'
 
 // Congito サインインページ日本語化
 import { I18n } from "aws-amplify/utils";
-import { PT_BR } from "@/translations/pt-br";
+import { PT_BR } from "@/translations/pt-br/ja";
 I18n.putVocabularies(PT_BR);
 I18n.setLanguage('ja');
 
@@ -76,7 +76,7 @@ const Home =  () => {
             <div className="container">
                 <h1>商品リスト</h1>
                 <div style={{ textAlign: 'right' }}>
-                    <button onClick={signOut}>Sign out</button>
+                    <button onClick={signOut}>サインアウト</button>
                 </div>
                 <div className="filter-container">
                     <form  onSubmit={handleSubmit}>
