@@ -2,6 +2,21 @@
 import { Item } from "@/utils/types";
 import  {useState, useEffect} from "react"
 
+import { Amplify } from 'aws-amplify';
+import Link from "next/link";
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css'
+
+// Congito サインインページ日本語化
+import { I18n } from "aws-amplify/utils";
+import { PT_BR } from "@/translations/pt-br";
+I18n.putVocabularies(PT_BR);
+I18n.setLanguage('ja');
+
+// Amplify Cognito のプール ID やクライアント ID を設定(ファイルからimport)
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
+
 // Home ページ
 const Home =  () => {
 
@@ -56,9 +71,13 @@ const Home =  () => {
     }
 
     return (
+        <Authenticator>
+        {({ signOut, user }) => (
             <div className="container">
                 <h1>商品リスト</h1>
-                
+                <div style={{ textAlign: 'right' }}>
+                    <button onClick={signOut}>Sign out</button>
+                </div>
                 <div className="filter-container">
                     <form  onSubmit={handleSubmit}>
                         <input value={itemName} onChange={(e)=> setItemName(e.target.value)} type="text" id="search-input" placeholder="商品名で検索..."/>
@@ -93,6 +112,8 @@ const Home =  () => {
                     )}
                 </div>
             </div>
+            )}
+        </Authenticator>
     );
 }
 
