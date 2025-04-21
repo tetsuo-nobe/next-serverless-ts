@@ -1,6 +1,6 @@
 export const PT_BR = {
   ja: {
-    // サインイン画面
+    // サインインページのラベル
     'Username': 'ユーザー ID',
     'Password': 'パスワード',
     'Email Address *': 'メールアドレス',
@@ -51,7 +51,7 @@ export const PT_BR = {
     'Resend Code': 'コードを再送',
     'We Emailed You': 'メールを送信しました',
     'Enter your code': '確認コードを入力してください',
-     // 必要に応じて他のラベルも追加
+     // エラーメッセージのラベル
     'Password must have at least 8 characters': 'パスワードは 8 文字以上にしてください',
     'Your passwords must match': 'パスワードがマッチしません',
     'Password did not conform with policy: Password not long enough':'パスワードは 8 文字以上にしてください',
@@ -72,10 +72,9 @@ export const PT_BR = {
     'CUSTOM_AUTH is not enabled for the client.': 'パスワードは必須です',
     'Password does not conform to policy: Password not long enough': 'パスワードは8文字以上を入力してください (8 文字以上の大文字小文字を含む英数字)',
     'Password does not conform to policy: Password must have uppercase characters': 'パスワードには大文字を含めてください (8 文字以上の大文字小文字を含む英数字)',
-    'Password does not conform to policy: Password must have lowercase characters': 'パスワードには小文字を含めてください (8 文字以上の大文字小文字を含む英数字)',
-    'Password does not conform to policy: Password must have numeric characters': 'パスワードには数字を含めてください (8 文字以上の大文字小文字を含む英数字)',
+    'Password did not conform with policy: Password must have lowercase characters': 'パスワードには小文字を含めてください (8 文字以上の大文字小文字を含む英数字)',
+    'Password did not conform with policy: Password must have uppercase characters': 'パスワードには数字を含めてください (8 文字以上の大文字小文字を含む英数字)',
     "1 validation error detected: Value at 'password' failed to satisfy constraint: Member must have length greater than or equal to 6": 'パスワードは 8 文字以上、大文字小文字を含む英数字を指定してください',
-    'Your code is on the way. To log in, enter the code we emailed to': 'コードを送信しました。ログインするには、メールで送信したコードを入力してください。',
-    'It may take a minute to arrive.': '到着までに1分ほどかかる場合があります。'
+    'Your code is on the way. To log in, enter the code we emailed to': 'コードを送信しました。ログインするには、メールで送信されたコードを入力してください。メール着信までに 1 分ほどかかる場合があります。'
   },
 };
