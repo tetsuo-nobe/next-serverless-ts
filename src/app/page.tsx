@@ -2,8 +2,8 @@
 import { Item } from "@/utils/types";
 import  {useState, useEffect} from "react"
 
+// Cognito のサインページの Amplify UI コンポーネント
 import { Amplify } from 'aws-amplify';
-import Link from "next/link";
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css'
 
@@ -13,8 +13,8 @@ import { PT_BR } from "@/translations/pt-br/ja";
 I18n.putVocabularies(PT_BR);
 I18n.setLanguage('ja');
 
-// Amplify Cognito のプール ID やクライアント ID を設定(ファイルからimport)
-import awsExports from './aws-exports';
+// Cognito のプール ID やクライアント ID を設定
+import awsExports from '@/utils/aws-exports';
 Amplify.configure(awsExports);
 
 // Home ページ
@@ -50,7 +50,7 @@ const Home =  () => {
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/get`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/search`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
