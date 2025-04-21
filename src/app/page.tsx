@@ -27,8 +27,17 @@ const Home =  () => {
 
     // 商品の取得とステートへの設定
     useEffect( () => {
+        // Token の取得
+        const appClient: string = awsExports.Auth.Cognito.userPoolClientId
+        const lastAuthUser: string = localStorage.getItem("CognitoIdentityServiceProvider." + appClient+".LastAuthUser") || ""
+        const token: string = localStorage.getItem("CognitoIdentityServiceProvider." + appClient+ "." + lastAuthUser + ".idToken") || ""
+        // リクエストヘッダーの生成
+        const requestHeaders: HeadersInit = new Headers();
+        requestHeaders.set('Authorization', token);          
+        //
         const getItems = async () => {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/getall`, {cache: "no-store"})
+       
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/getall`, {method: "GET", headers: requestHeaders, cache: "no-store"})
             const jsonData = await response.json()
             const display_items = jsonData.allItems
             setItems(display_items)
@@ -76,6 +85,7 @@ const Home =  () => {
             <div className="container">
                 <h1>商品リスト</h1>
                 <div style={{ textAlign: 'right' }}>
+                    <p>ユーザー ID:{user?.signInDetails?.loginId}</p>
                     <button onClick={signOut}>サインアウト</button>
                 </div>
                 <div className="filter-container">
