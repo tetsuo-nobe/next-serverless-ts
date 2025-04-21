@@ -58,12 +58,18 @@ const Home =  () => {
     // 検索ボタン選択時の処理
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        // Token の取得
+        const appClient: string = awsExports.Auth.Cognito.userPoolClientId
+        const lastAuthUser: string = localStorage.getItem("CognitoIdentityServiceProvider." + appClient+".LastAuthUser") || ""
+        const token: string = localStorage.getItem("CognitoIdentityServiceProvider." + appClient+ "." + lastAuthUser + ".idToken") || ""
+    
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/search`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
-                    "Content-type": "application/json"
+                    "Content-type": "application/json",
+                    "Authorization": token
                 },
                 body: JSON.stringify({
                     itemName: itemName,
