@@ -30,16 +30,11 @@ const Home = () => {
     // 商品の取得とステートへの設定
     useEffect(  () => {
         const getItems = async () => {
-                // Token の取得
-                const my_token: string = (await fetchAuthSession()).tokens?.idToken?.toString() || ""
-                // リクエストヘッダーの生成
-                const requestHeaders: HeadersInit = new Headers();
-                requestHeaders.set('Authorization', my_token);   
-                // 商品取得 API 発行  
-                const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/getall`, {method: "GET", headers: requestHeaders, cache: "no-store"})
-                const jsonData = await response.json()
-                const display_items = jsonData.allItems
-                setItems(display_items)
+            // 商品取得 API 発行  
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/getall`, {method: "GET",  cache: "no-store"})
+            const jsonData = await response.json()
+            const display_items = jsonData.allItems
+            setItems(display_items)
         }
         getItems()
     },[])
