@@ -25,19 +25,24 @@ const Home = () => {
     const [itemName, setItemName] = useState("")
     const [category, setCategory] = useState("all")
     const [items, setItems] = useState([] as Item[])
+    
+    const [token, setToken] = useState("")
 
 
     // 商品の取得とステートへの設定
     useEffect(  () => {
         const getItems = async () => {
+            // リクエストヘッダーの生成
+            const requestHeaders: HeadersInit = new Headers();
+            requestHeaders.set('Authorization', token);   
             // 商品取得 API 発行  
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/getall`, {method: "GET",  cache: "no-store"})
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/getall`, {method: "GET", headers: requestHeaders, cache: "no-store"})
             const jsonData = await response.json()
             const display_items = jsonData.allItems
             setItems(display_items)
         }
         getItems()
-    },[])
+    },[token])
 
 
     // 価格をフォーマット
@@ -48,19 +53,26 @@ const Home = () => {
              }).format(price)
     }
 
+    // 認証トークンの取得
+    const getAuthToken =  () => {
+        const fetchToken = async () => {
+          const id_token: string = (await fetchAuthSession()).tokens?.idToken?.toString() || ""
+          setToken(id_token)
+        }
+        fetchToken()
+        return ""
+    }
+
     // 検索ボタン選択時の処理
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        // Token の取得
-        const my_token: string = (await fetchAuthSession()).tokens?.idToken?.toString() || ""
-    
+        e.preventDefault()    
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/search`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
                     "Content-type": "application/json",
-                    "Authorization": my_token
+                    "Authorization": token
                 },
                 body: JSON.stringify({
                     itemName: itemName,
@@ -80,6 +92,7 @@ const Home = () => {
         <Authenticator loginMechanisms={['email']}>
         {({ signOut, user }) => (
             <div className="container">
+                <div>{getAuthToken()}</div>
                 <h1>商品リスト</h1>
                 <div style={{ textAlign: 'right' }}>
                     <p>ユーザー ID:{user?.signInDetails?.loginId}</p>
