@@ -4,6 +4,8 @@ export const PT_BR = {
     'Username': 'ユーザー ID',
     'Password': 'パスワード',
     'Email Address *': 'メールアドレス',
+    'Email': 'メールアドレス',
+    'Enter your Email': 'メールアドレスを入力してください',
     'Enter your phone_number': '電話番号を入力してください',
     'Enter your Username': 'ユーザー名を入力してください',
     'Enter your Password': 'パスワードを入力してください',

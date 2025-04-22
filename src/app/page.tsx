@@ -6,6 +6,7 @@ import  {useState, useEffect} from "react"
 import { Amplify } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css'
+import { fetchAuthSession } from 'aws-amplify/auth';
 
 // Congito サインインページ日本語化
 import { I18n } from "aws-amplify/utils";
@@ -18,32 +19,29 @@ import awsExports from '@/utils/aws-exports';
 Amplify.configure(awsExports);
 
 // Home ページ
-const Home =  () => {
-
+const Home = () => {
+    
     // State 
     const [itemName, setItemName] = useState("")
     const [category, setCategory] = useState("all")
     const [items, setItems] = useState([] as Item[])
 
+
     // 商品の取得とステートへの設定
-    useEffect( () => {
-        // Token の取得
-        const appClient: string = awsExports.Auth.Cognito.userPoolClientId
-        const lastAuthUser: string = localStorage.getItem("CognitoIdentityServiceProvider." + appClient+".LastAuthUser") || ""
-        const token: string = localStorage.getItem("CognitoIdentityServiceProvider." + appClient+ "." + lastAuthUser + ".idToken") || ""
-        // リクエストヘッダーの生成
-        const requestHeaders: HeadersInit = new Headers();
-        requestHeaders.set('Authorization', token);          
-        //
+    useEffect(  () => {
         const getItems = async () => {
-       
-            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/getall`, {method: "GET", headers: requestHeaders, cache: "no-store"})
-            const jsonData = await response.json()
-            const display_items = jsonData.allItems
-            setItems(display_items)
+                // Token の取得
+                const my_token: string = (await fetchAuthSession()).tokens?.idToken?.toString() || ""
+                // リクエストヘッダーの生成
+                const requestHeaders: HeadersInit = new Headers();
+                requestHeaders.set('Authorization', my_token);   
+                // 商品取得 API 発行  
+                const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/getall`, {method: "GET", headers: requestHeaders, cache: "no-store"})
+                const jsonData = await response.json()
+                const display_items = jsonData.allItems
+                setItems(display_items)
         }
         getItems()
-
     },[])
 
 
@@ -59,9 +57,7 @@ const Home =  () => {
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         // Token の取得
-        const appClient: string = awsExports.Auth.Cognito.userPoolClientId
-        const lastAuthUser: string = localStorage.getItem("CognitoIdentityServiceProvider." + appClient+".LastAuthUser") || ""
-        const token: string = localStorage.getItem("CognitoIdentityServiceProvider." + appClient+ "." + lastAuthUser + ".idToken") || ""
+        const my_token: string = (await fetchAuthSession()).tokens?.idToken?.toString() || ""
     
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/item/search`, {
@@ -69,7 +65,7 @@ const Home =  () => {
                 headers: {
                     "Accept": "application/json",
                     "Content-type": "application/json",
-                    "Authorization": token
+                    "Authorization": my_token
                 },
                 body: JSON.stringify({
                     itemName: itemName,
@@ -86,7 +82,7 @@ const Home =  () => {
     }
 
     return (
-        <Authenticator>
+        <Authenticator loginMechanisms={['email']}>
         {({ signOut, user }) => (
             <div className="container">
                 <h1>商品リスト</h1>
